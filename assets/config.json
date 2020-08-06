@@ -42,7 +42,10 @@
     {
       "trackId": "trio",
       "assemblyNames": ["hg38"],
-      "type": "BasicTrack",
+      "type": "WiggleTrack",
+      "autoscale": "local",
+      "maxScore": 100,
+      "minScore": 0,
       "adapter": {
         "type": "VCFRawAdapter",
         "subadapter": {
@@ -56,9 +59,6 @@
             }
           }
         }
-      },
-      "renderer": {
-        "type": "SvgFeatureRenderer"
       }
     }
   ],
@@ -89,7 +89,7 @@
           ],
           "tracks": [
             {
-              "type": "BasicTrack",
+              "type": "WiggleTrack",
               "configuration": "trio",
               "height": 100
             }
