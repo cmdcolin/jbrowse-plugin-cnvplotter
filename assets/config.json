@@ -1,0 +1,103 @@
+{
+  "plugins": [
+    {
+      "name": "VCFRawTabix",
+      "url": "http://localhost:9000/plugin.js"
+    }
+  ],
+  "assemblies": [
+    {
+      "name": "hg38",
+      "aliases": ["GRCh38"],
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "P6R5xbRqRr",
+        "adapter": {
+          "type": "BgzipFastaAdapter",
+          "fastaLocation": {
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz"
+          },
+          "faiLocation": {
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.fai"
+          },
+          "gziLocation": {
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.gzi"
+          }
+        },
+        "rendering": {
+          "type": "DivSequenceRenderer"
+        }
+      },
+      "refNameAliases": {
+        "adapter": {
+          "type": "RefNameAliasAdapter",
+          "location": {
+            "uri": "test_data/GRCh38_RefSeq2UCSC.txt"
+          }
+        }
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "trackId": "trio",
+      "assemblyNames": ["hg38"],
+      "type": "BasicTrack",
+      "adapter": {
+        "type": "VCFRawAdapter",
+        "subadapter": {
+          "type": "VcfTabixAdapter",
+          "vcfGzLocation": {
+            "uri": "http://localhost:9000/trio.vcf.gz"
+          },
+          "index": {
+            "location": {
+              "uri": "http://localhost:9000/trio.vcf.gz.tbi"
+            }
+          }
+        }
+      },
+      "renderer": {
+        "type": "SvgFeatureRenderer"
+      }
+    }
+  ],
+  "defaultSession": {
+    "name": "New Session"
+  },
+  "savedSessions": [
+    {
+      "name": "Human Example (hg38)",
+      "width": 1850,
+      "drawerWidth": 384,
+      "views": [
+        {
+          "id": "MiDMyyWpp",
+          "type": "LinearGenomeView",
+          "width": 800,
+          "displayName": "Trio renderer demo",
+          "trackSelectorType": "hierarchical",
+          "offsetPx": 0,
+          "bpPerPx": 100,
+          "displayedRegions": [
+            {
+              "refName": "1",
+              "start": 0,
+              "end": 186700647,
+              "assemblyName": "hg38"
+            }
+          ],
+          "tracks": [
+            {
+              "type": "BasicTrack",
+              "configuration": "trio",
+              "height": 100
+            }
+          ],
+          "controlsWidth": 120,
+          "minimumBlockWidth": 20
+        }
+      ]
+    }
+  ]
+}
